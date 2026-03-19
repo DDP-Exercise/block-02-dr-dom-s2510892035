@@ -26,9 +26,19 @@
  * First of all, we need to be able to read the text again,
  * without the risk of catching an eye infection!
  */
+let paragraphs = document.getElementsByTagName("p");
+for (let p of paragraphs) {
+    p.style.color = "";
+    p.style.backgroundColor = "";
+}
 
 
-
+// TODO 1b: Pink-on-green Text ausblenden
+for (let p of paragraphs) {
+    if (p.textContent.includes("pink text on green background")) {
+        p.style.display = "none";
+    }
+}
 
 /**
  * TODO 2:
@@ -36,6 +46,14 @@
  * Can't we just remove them all together?
  */
 
+let heroList = document.getElementById("heroes_of_the_web");
+let parent = heroList.parentNode;
+
+// remove the UL that was inserted BEFORE the original list
+let insertedList = heroList.previousElementSibling;
+if (insertedList) {
+    parent.removeChild(insertedList);
+}
 
 
 
@@ -45,13 +63,18 @@
  * And while at it, let the world know again, that they are back in town!
  */
 
+heroList.style.visibility = "visible";
 
+let messageAfter = document.getElementById("message").nextElementSibling;
+messageAfter.textContent = "Let us introduce to you our list of Web-Heroes:";
 
 /**
  * TODO 4:
  * Our Webpage is safe again! But Dr. Dom is still holding our Headline as a hostage!
  * Do your thing, savior!
  */
+let title = document.getElementById("title");
+title.textContent = "We, the mighty Heroes of the web, will protect you!";
 
 
 
@@ -63,3 +86,10 @@
  * It might sound paranoid. But I can't get rid of the feeling, that he is still here,
  * somewhere in the DOM. I can still feel his Code. Can you identify the source and remove it?
  */
+let scripts = document.getElementsByTagName("script");
+
+for (let s of scripts) {
+    if (s.src.includes("dr.dom.js")) {
+        s.remove();
+    }
+}

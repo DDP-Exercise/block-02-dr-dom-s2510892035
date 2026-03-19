@@ -15,7 +15,21 @@
  *******************************************************/
 
 //TODO: Place one object here.
+const SAVIOR = {
+    name: "De Cong Wong",
+    age: 30,
+    location: "Wels",
+    hobbies: ["drawing", "snowboarding", "photography", "traveling"],
+    type_of_companion: "electric mouse"
+}
 
+SAVIOR.companion = {
+    name: "Pikachu",
+    nature: "sassy",
+    attack: "thunderbolt",
+}
+
+SAVIOR.type_of_companion = "Pokemon";
 /*******************************************************
  *   DO NOT CHANGE THE CODE BELOW!
  *******************************************************/

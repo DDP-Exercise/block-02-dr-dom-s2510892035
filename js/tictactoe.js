@@ -17,16 +17,7 @@
  *     Bratlsoft - 2026-03-15
  *******************************************************/
 
-const X = "Savior (X)";
-const O = "Dr. DOM (O)";
 
-//Some of your epic battles:
-const BATTLEFIELD =
-    [
-        [O, X, O],
-        [X, X, X],
-        [O, O, X],
-    ];
 // const BATTLEFIELD =
 //     [
 //         [null, X, X],
@@ -68,3 +59,49 @@ const BATTLEFIELD =
 // Check Vertical
 // Check Main Diagonal
 // Check Anti Diagonal
+
+
+
+{
+    const X = "Savior (X)";
+    const O = "Dr. DOM (O)";
+
+    const spielfeld = [
+        [O, X, O],
+        [X, X, X],
+        [O, O, X],
+    ];
+
+    let n = spielfeld.length;
+    let gewinner = null;
+    let art = "";
+
+    function alleGleich(array) {
+        return array.every(feld => feld !== null && feld === array[0]);
+    }
+
+    // Horizontal
+    for (let zeile of spielfeld) {
+        if (alleGleich(zeile)) { gewinner = zeile[0]; art = "horizontal"; }
+    }
+
+    // Vertical
+    for (let spalte = 0; spalte < n; spalte++) {
+        let spaltenWerte = [];
+        for (let zeile = 0; zeile < n; zeile++) { spaltenWerte.push(spielfeld[zeile][spalte]); }
+        if (alleGleich(spaltenWerte)) { gewinner = spaltenWerte[0]; art = "vertikal"; }
+    }
+
+    // Diagonals
+    let diag1 = [], diag2 = [];
+    for (let i = 0; i < n; i++) {
+        diag1.push(spielfeld[i][i]);
+        diag2.push(spielfeld[i][n - 1 - i]);
+    }
+    if (alleGleich(diag1)) { gewinner = diag1[0]; art = "Hauptdiagonale"; }
+    if (alleGleich(diag2)) { gewinner = diag2[0]; art = "Gegendiagonale"; }
+
+    // Result
+    if (gewinner) console.log(gewinner + " gewinnt (" + art + ")");
+    else console.log("Kein Gewinner");
+}
